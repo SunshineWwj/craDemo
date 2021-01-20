@@ -1,0 +1,43 @@
+.my_confirm_mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0px;
+    top:0px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.my_confirm_mask .confirm{
+    width: 300px;
+    height: 150px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    border-radius: 4px;
+}
+.my_confirm_mask .message{
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 40px;
+}
+.my_confirm_mask .handle{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+    margin-top: 40px;
+}
+.my_confirm_mask .button{
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    cursor: pointer;
+}

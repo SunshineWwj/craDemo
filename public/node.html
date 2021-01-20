@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+</head>
+<body>
+    <script>
+        function demo(){
+            console.log(1,arguments);
+            //es5转真实数组
+            console.log(2,Array.prototype.slice.call(arguments));
+            //es6转真实数组
+            console.log(3,Array.from(arguments));
+
+        }
+        demo(1,2,3,4);
+
+        //箭头函数
+        const getArr=(...args)=>{
+            console.log(4,args);
+        }
+        getArr(1,2,3,4);
+    </script>
+    <script src="./babel.min.js"></script>
+    <script type="text/babel">
+        /*@jsx createElement*/  //@jsx   babel的自执行指令
+        let users=[
+            {name:'张三'},
+            {name:'里斯'},
+            {name:'王五'},
+        ]
+        let vDom=(<div id='app' name='app'>
+            hello world!
+                <ul class='ul-name'>
+                   {users.map((item,index)=>(<li key={index}>{item.name}</li>))}
+                </ul>
+            </div>)
+
+        function createElement(nodeName,attr,...args){
+            return {nodeName:nodeName,attr:attr,children:[].concat(...args)}
+        }
+
+        function render(vNode){
+            console.log('vNode:',vNode);
+
+            //如果是文本(因为如果是node节点不能用split方法)
+            if(vNode.split){
+                return document.createTextNode(vNode)
+            }
+            //如果不是文本
+            const node =document.createElement(vNode.nodeName);
+            //添加属性
+            let attr=vNode.attr ||{};
+            Object.keys(attr).forEach(k=>{
+                node.setAttribute(k,attr[k]);
+            });
+            //添加子节点
+            (vNode.children||[]).forEach(n => {
+                node.appendChild(render(n))
+            });
+            return node;
+        }
+
+        let domRender=render(vDom);        
+        document.body.appendChild(domRender)
+    </script>
+</body>
+</html>

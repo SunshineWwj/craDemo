@@ -1,0 +1,39 @@
+<HTML>
+    <HEAD>
+    <TITLE>JS实现的模拟抽奖代码_网页代码站(www.webdm.cn)</TITLE>
+    </HEAD>
+    <BODY>
+    <SCRIPT language=JavaScript>
+    var alldata = "wwj,cl,wsl,google,baidu,msn,qq,cctv,microsoft,adobe"//抽奖的姓名，以,为分隔
+    
+    var alldataarr = alldata.split(",")
+    var num = alldataarr.length-1
+    var timer
+    function change(){
+        document.getElementById("oknum").value = alldataarr[GetRnd(0,num)];
+    }
+    
+    function start(){
+        clearInterval(timer);
+        timer = setInterval('change()',50);//50（毫秒）为变换间隔，越小变换的越快
+    }
+    
+    function ok(){
+        
+        clearInterval(timer);
+        document.getElementById("oknum").value='wwj';
+    }
+    
+    function GetRnd(min,max){
+        const a=parseInt(Math.random()*(max-min+1));
+        console.log(a)
+        return a;
+    }
+    </SCRIPT>
+    模拟抽奖：<INPUT id=oknum name=oknum><BUTTON accessKey=s 
+    onclick=start()>开始(<U>S</U>)</BUTTON><BUTTON accessKey=o 
+    onclick=ok()>停止(<U>O</U>)</BUTTON>
+    <br>
+    <p><a href="http://www.webdm.cn">网页代码站</a> - 最专业的网页代码下载网站 - 致力为中国站长提供有质量的网页代码！</p>
+     </BODY>
+     </HTML>
